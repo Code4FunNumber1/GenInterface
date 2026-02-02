@@ -28,61 +28,54 @@ When finished turn this in on GitHub and Canvas.
 This portion is worth 15 points.
 */
 
-import java.util.Formatter;
+void main() {
 
-public class U1B02Act {
+    IO.println("\n=== SOF_U1B2 PAIR LAB: GENERIC INTERFACES ===\n");
 
-    public static void main(String[] args) {
+    // ============================================================
+    // PART A (Warm-up): A generic interface with a default method
+    // (Goal: implement Formatter.Formatter<T> + a couple classes)
+    // ============================================================
 
-        System.out.println("\n=== SOF_U1B2 PAIR LAB: GENERIC INTERFACES ===\n");
 
-        // ============================================================
-        // PART A (Warm-up): A generic interface with a default method
-        // (Goal: implement Formatter<T> + a couple classes)
-        // ============================================================
+    // - String format(T value);
+    // - default void print(T value) { System.out.println(format(value)); }
 
-        // TODO A1: Make Formatter<T> interface:
-        // - String format(T value);
-        // - default void print(T value) { System.out.println(format(value)); }
+    // - format(26) -> "0x1A"
+    //   hint: Integer.toHexString(value).toUpperCase()
 
-        // TODO A2: Make IntHexFormatter implements Formatter<Integer>
-        // - format(26) -> "0x1A"
-        //   hint: Integer.toHexString(value).toUpperCase()
+    // - format(x) -> "[" + x + "]"
 
-        // TODO A3: Make BracketFormatter<T> implements Formatter<T>
-        // - format(x) -> "[" + x + "]"
+    // --- Tests for Part A ---
 
-        // --- Tests for Part A ---
-        // TODO A4: Uncomment after finishing A1-A3
-        /*
         Formatter<Integer> hex = new IntHexFormatter();
         hex.print(26); // expect 0x1A
 
         Formatter<String> bracket = new BracketFormatter<>();
         bracket.print("SOF"); // expect [SOF]
-        */
 
-        // ============================================================
-        // PART B: Generic interface with 2 type parameters
-        // (Goal: build Transformer<IN, OUT> + a few implementations)
-        // ============================================================
 
-        // TODO B1: Create interface Transformer<IN, OUT>:
-        // - OUT transform(IN input);
+    // ============================================================
+    // PART B: Generic interface with 2 type parameters
+    // (Goal: build Transformer<IN, OUT> + a few implementations)
+    // ============================================================
 
-        // TODO B2: Create class StringLengthTransformer implements Transformer<String, Integer>
-        // - "robot" -> 5
+    // TODO B1: Create interface Transformer<IN, OUT>:
+    // - OUT transform(IN input);
 
-        // TODO B3: Create class AddPrefixTransformer implements Transformer<String, String>
-        // - constructor takes prefix
-        // - transform("x") -> prefix + "x"
+    // TODO B2: Create class StringLengthTransformer implements Transformer<String, Integer>
+    // - "robot" -> 5
 
-        // TODO B4: Create class IntToStringTransformer implements Transformer<Integer, String>
-        // - 42 -> "42"
+    // TODO B3: Create class AddPrefixTransformer implements Transformer<String, String>
+    // - constructor takes prefix
+    // - transform("x") -> prefix + "x"
 
-        // --- Tests for Part B ---
-        // TODO B5: Uncomment after finishing B1-B4
-        /*
+    // TODO B4: Create class IntToStringTransformer implements Transformer<Integer, String>
+    // - 42 -> "42"
+
+    // --- Tests for Part B ---
+    // TODO B5: Uncomment after finishing B1-B4
+
         Transformer<String, Integer> len = new StringLengthTransformer();
         System.out.println(len.transform("robot")); // expect 5
 
@@ -91,28 +84,28 @@ public class U1B02Act {
 
         Transformer<Integer, String> i2s = new IntToStringTransformer();
         System.out.println(i2s.transform(42)); // expect 42
-        */
 
-        // ============================================================
-        // PART C: Generic interface as a PARAMETER (no collections)
-        // (Goal: write utility methods that accept your generic interfaces)
-        // ============================================================
 
-        // TODO C1: Write a static method applyOnce(input, transformer)
-        // - returns transformer.transform(input)
-        //
-        // Signature hint:
-        // static <IN, OUT> OUT applyOnce(IN input, Transformer<IN, OUT> transformer)
+    // ============================================================
+    // PART C: Generic interface as a PARAMETER (no collections)
+    // (Goal: write utility methods that accept your generic interfaces)
+    // ============================================================
 
-        // TODO C2: Write a static method applyTwice(input, transformer)
-        // - applies the transformer twice
-        // - This only makes sense when IN and OUT are the same type
-        //
-        // Signature hint:
-        // static <T> T applyTwice(T input, Transformer<T, T> transformer)
+    // TODO C1: Write a static method applyOnce(input, transformer)
+    // - returns transformer.transform(input)
+    //
+    // Signature hint:
+    // static <IN, OUT> OUT applyOnce(IN input, Transformer<IN, OUT> transformer)
 
-        // --- Tests for Part C ---
-        // TODO C3: Uncomment after finishing C1-C2
+    // TODO C2: Write a static method applyTwice(input, transformer)
+    // - applies the transformer twice
+    // - This only makes sense when IN and OUT are the same type
+    //
+    // Signature hint:
+    // static <T> T applyTwice(T input, Transformer<T, T> transformer)
+
+    // --- Tests for Part C ---
+    // TODO C3: Uncomment after finishing C1-C2
         /*
         Transformer<String, String> tag = new AddPrefixTransformer("#");
         System.out.println(applyOnce("hello", tag));     // expect #hello
@@ -122,37 +115,37 @@ public class U1B02Act {
         System.out.println(applyOnce("Katherine", length)); // expect 9
         */
 
-        // ============================================================
-        // (SWITCH ROLES HERE)
-        // ============================================================
+    // ============================================================
+    // (SWITCH ROLES HERE)
+    // ============================================================
 
-        // ============================================================
-        // PART D: Another generic interface + implementations (no collections)
-        // (Goal: build Rule<T> and test multiple values)
-        // ============================================================
+    // ============================================================
+    // PART D: Another generic interface + implementations (no collections)
+    // (Goal: build Rule<T> and test multiple values)
+    // ============================================================
 
-        // TODO D1: Create interface Rule<T>:
-        // - boolean test(T value);
-        // - default boolean testNot(T value) { return !test(value); }
+    // TODO D1: Create interface Rule<T>:
+    // - boolean test(T value);
+    // - default boolean testNot(T value) { return !test(value); }
 
-        // TODO D2: Create class NonEmptyStringRule implements Rule<String>
-        // - returns true if the string is not null AND not blank
-        //   hint: value != null && !value.isBlank()
+    // TODO D2: Create class NonEmptyStringRule implements Rule<String>
+    // - returns true if the string is not null AND not blank
+    //   hint: value != null && !value.isBlank()
 
-        // TODO D3: Create class EvenIntegerRule implements Rule<Integer>
-        // - returns true if value is not null AND value % 2 == 0
+    // TODO D3: Create class EvenIntegerRule implements Rule<Integer>
+    // - returns true if value is not null AND value % 2 == 0
 
-        // TODO D4: Create class AlwaysTrueRule<T> implements Rule<T>
-        // - always returns true
+    // TODO D4: Create class AlwaysTrueRule<T> implements Rule<T>
+    // - always returns true
 
-        // TODO D5: Write a static method allPass(a, b, c, rule)
-        // - returns true only if ALL three values pass the rule
-        //
-        // Signature hint:
-        // static <T> boolean allPass(T a, T b, T c, Rule<T> rule)
+    // TODO D5: Write a static method allPass(a, b, c, rule)
+    // - returns true only if ALL three values pass the rule
+    //
+    // Signature hint:
+    // static <T> boolean allPass(T a, T b, T c, Rule<T> rule)
 
-        // --- Tests for Part D ---
-        // TODO D6: Uncomment after finishing D1-D5
+    // --- Tests for Part D ---
+    // TODO D6: Uncomment after finishing D1-D5
         /*
         Rule<String> nonEmpty = new NonEmptyStringRule();
         System.out.println(allPass("Ada", "Grace", "Katherine", nonEmpty)); // expect true
@@ -166,27 +159,27 @@ public class U1B02Act {
         System.out.println(allPass(1.0, 2.5, 999.9, always)); // expect true
         */
 
-        // ============================================================
-        // PART E (Mini-Challenge): Compose generic interfaces
-        // (Goal: build ComposedTransformer<IN, MID, OUT>)
-        // ============================================================
+    // ============================================================
+    // PART E (Mini-Challenge): Compose generic interfaces
+    // (Goal: build ComposedTransformer<IN, MID, OUT>)
+    // ============================================================
 
-        // TODO E1: Create class ComposedTransformer<IN, MID, OUT>
-        // that implements Transformer<IN, OUT>
-        //
-        // It should have:
-        // - private final Transformer<IN, MID> first;
-        // - private final Transformer<MID, OUT> second;
-        //
-        // Constructor:
-        // - takes (first, second)
-        //
-        // transform(input):
-        // - MID mid = first.transform(input);
-        // - return second.transform(mid);
+    // TODO E1: Create class ComposedTransformer<IN, MID, OUT>
+    // that implements Transformer<IN, OUT>
+    //
+    // It should have:
+    // - private final Transformer<IN, MID> first;
+    // - private final Transformer<MID, OUT> second;
+    //
+    // Constructor:
+    // - takes (first, second)
+    //
+    // transform(input):
+    // - MID mid = first.transform(input);
+    // - return second.transform(mid);
 
-        // --- Tests for Part E ---
-        // TODO E2: Uncomment after finishing E1
+    // --- Tests for Part E ---
+    // TODO E2: Uncomment after finishing E1
         /*
         Transformer<String, String> vip = new AddPrefixTransformer("VIP-");
         Transformer<String, Integer> len = new StringLengthTransformer();
@@ -201,19 +194,12 @@ public class U1B02Act {
         System.out.println(intThenHash.transform(42)); // expect #42
         */
 
-        System.out.println("\n=== DONE (when everything above is passing) ===\n");
-    }
-
-    // TODO C1: Put applyOnce(...) here
-
-    // TODO C2: Put applyTwice(...) here
-
-    // TODO D5: Put allPass(...) here
+    IO.println("\n=== DONE (when everything above is passing) ===\n");
 }
 
 
 // ============================================================
-// TODO A1-A3: Put Formatter<T>, IntHexFormatter, BracketFormatter<T> here
+// TODO A1-A3: Put Formatter.Formatter<T>, Formatter.IntHexFormatter, Formatter.Formatter.BracketFormatter<T> here
 // ============================================================
 
 
